@@ -35,10 +35,16 @@ if __name__ == '__main__':
     # Les lignes suivantes sont à modifier / supprimer selon ce qu'on veut faire, quelques exemples :
 
     # Faire jouer ensemble codemaker0.py et codebreaker0.py pour 5 parties :
-    import codebreaker0
-    import codemaker0
+    # import codebreaker0
+    # import codemaker0
+    # for i in range(5):
+    #     play(codemaker0, codebreaker0)
+        
+    # Faire jouer codebreaker1.py et codemaker1.py
+    import codebreaker1
+    import codemaker1
     for i in range(5):
-        play(codemaker0, codebreaker0)
+        play(codemaker1, codebreaker1)
 
     #  Faire jouer un humain contre codemaker0.py :
     #import codemaker0

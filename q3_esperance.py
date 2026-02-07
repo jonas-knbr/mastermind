@@ -6,7 +6,7 @@ import codemaker1
 import codebreaker0
 import matplotlib.pyplot as plt
 
-nbr_parties = 10000 #int(input("Combien de parties ?\n> "))
+nbr_parties = 1000 #int(input("Combien de parties ?\n> "))
 parties = []
 
 for _ in range(nbr_parties):

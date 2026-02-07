@@ -10,6 +10,7 @@ nbr_parties = 10000 #int(input("Combien de parties ?\n> "))
 parties = []
 
 for _ in range(nbr_parties):
+    print(_)
     parties.append(play.play(codemaker1, codebreaker1, quiet=True))
 
 print(f"Minimum d'essais : {min(parties)}, maximum d'essais : {max(parties)}")

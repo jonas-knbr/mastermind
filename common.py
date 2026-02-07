@@ -24,20 +24,33 @@ def evaluation(combinaison, solution):
     
     return (nbr_bp, nbr_mp)
 
+def creer_tous_possibles(couleurs, taille=LENGTH):
+    taille_ensemble = len(couleurs)**taille
+    ensemble = set()
+    while len(ensemble) < taille_ensemble:
+        element = ''.join(random.choices(couleurs, k=taille))
+        ensemble.add(element)
+    return ensemble
 
-def donner_possibles (combinaison,evaluation):
-    """
-    tu vas voir la gueule des if, en plus il faut encore prendre en compte les plots bien placés, pour le moment c'est censé juste enlever des combinaisons en se basant sur le nombre de bonnes couleurs
-    """
-    possibles = set(''.join(random.choices(COLORS, k=LENGTH))) # ensemble avec toutes les combinaisons possibles que l'on affine au fur et à mesure
-    if evaluation[0] == 0: # si aucune bonne couleur 
-        possibles.remove (''.join(random.choices(COLORS in combinaison,k=LENGTH))) #enlève toutes les combinaisons qui contiennent au moins une des quatres couelurs de la combianison testée
-    elif evaluation[0] == 1 :
-        possibles.remove(''.join(random.choices(COLORS in combinaison, k=LENGTH))) #enlève les combinaisons possibles qui contiennent pas de couleurs en commun avec la combinaison
-    elif evaluation[0] == 2:
-        possibles.remove(random.choices(''.join(random.choices(COLORS in combinaison, k = evaluation[0]-1)).join(''.join(random.choices(COLORS not in combinaison, k=LENGTH+1-evaluation[0]))))) #enlève les combinaisons qui utilisent seulement 1 couleur parmi les couleurs de la combinaisons testée
-    elif evaluation[0] == 3 :
-        possibles.remove(random.choices((''.join(random.choices(COLORS in combinaison, k=evaluation[0]-1)).join(''.join(random.choices(COLORS not in combinaison, k=LENGTH+1-evaluation[0])))))) #enlève les combinaisons qui utilisent seulement deux couleurs parmi les quatres de la combinaison testée (je suis vraiment pas sûr que ça fonctionne)
-    elif evaluation[0] == 4:
-        possibles.remove(''.join(random.choices(COLORS not in combinaison, k=LENGTH))) # élimine les combinaisons qui n'utilisent pas les couleurs de combinaison
+def donner_possibles(combinaison, evaluation):
+    nbr_possibles = len(COLORS)**LENGTH
+    possibles = creer_tous_possibles(COLORS)
+    nbr_bp, nbr_mp = evaluation
     
+    # Si aucune couleur placée ne correspond à la solution
+    if not nbr_bp and not nbr_mp:
+        couleurs_dans_comb = [color for color in COLORS if color in combinaison]
+        possibles -= creer_tous_possibles(couleurs_dans_comb)
+    else:
+        compte_couleurs = {color:combinaison.count(color) for color in COLORS}
+        
+        # Si l'on a placé une seule couleur
+        if LENGTH in compte_couleurs.values():
+            couleur_max = max(compte_couleurs, key=lambda x: compte_couleurs[x])
+            
+            # On supprime toutes les combinaisons qui n'ont pas nbr_mp+nbr_bp fois cette couleur
+            for possible in possibles:
+                if possible.count(couleur_max) < nbr_mp + nbr_mp:
+                    possibles.remove(possible)
+                
+    return possibles

@@ -10,7 +10,6 @@ nbr_parties = 1000 #int(input("Combien de parties ?\n> "))
 parties = []
 
 for _ in range(nbr_parties):
-    print(_)
     parties.append(play.play(codemaker1, codebreaker1, quiet=True))
 
 plt.title(f"Histogramme du nombre d'essais réalisés par le codebreaker\n({nbr_parties} parties)")

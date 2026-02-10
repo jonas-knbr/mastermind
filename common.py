@@ -24,33 +24,13 @@ def evaluation(combinaison, solution):
     
     return (nbr_bp, nbr_mp)
 
-def creer_tous_possibles(couleurs, taille=LENGTH):
-    taille_ensemble = len(couleurs)**taille
-    ensemble = set()
-    while len(ensemble) < taille_ensemble:
-        element = ''.join(random.choices(couleurs, k=taille))
-        ensemble.add(element)
-    return ensemble
-
-def donner_possibles(combinaison, evaluation):
+def donner_possibles(combinaison, evaluation_comb):
     nbr_possibles = len(COLORS)**LENGTH
-    possibles = creer_tous_possibles(COLORS)
-    nbr_bp, nbr_mp = evaluation
+    possibles = set()
     
-    # Si aucune couleur placée ne correspond à la solution
-    if not nbr_bp and not nbr_mp:
-        couleurs_dans_comb = [color for color in COLORS if color in combinaison]
-        possibles -= creer_tous_possibles(couleurs_dans_comb)
-    else:
-        compte_couleurs = {color:combinaison.count(color) for color in COLORS}
-        
-        # Si l'on a placé une seule couleur
-        if LENGTH in compte_couleurs.values():
-            couleur_max = max(compte_couleurs, key=lambda x: compte_couleurs[x])
-            
-            # On supprime toutes les combinaisons qui n'ont pas nbr_mp+nbr_bp fois cette couleur
-            for possible in possibles:
-                if possible.count(couleur_max) < nbr_mp + nbr_mp:
-                    possibles.remove(possible)
+    while len(possibles) < nbr_possibles:
+        element = ''.join(random.choices(couleurs, k=LENGTH))
+        if evaluation(element) == evaluation_comb:
+            possibles.add(element)
                 
     return possibles

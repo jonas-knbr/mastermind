@@ -10,5 +10,4 @@ def init():
 
 def codemaker(combinaison):
     global solution
-    print("Solution :", solution)
     return common.evaluation(solution, combinaison)

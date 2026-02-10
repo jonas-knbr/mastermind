@@ -9,7 +9,6 @@ def init():
     global derniere_tentative, possibles
     derniere_tentative = ""
     possibles = set()
-    print("Initialisation réalisée")
     return
 
 
@@ -19,21 +18,18 @@ def codebreaker(evaluation_p):
     if evaluation_p == None:
         combinaison = ''.join(random.choices(common.COLORS, k=common.LENGTH))
         derniere_tentative = combinaison
-        print("Première tentative")
         return combinaison
     
     # On est au deuxième essai, on doit creer l'ensemble des possibles
     elif len(possibles) == 0:
         possibles = common.donner_possibles(derniere_tentative, evaluation_p)
-        print(len(possibles))
    
     # Cas général
     else:
-        print("Avant maj :", len(possibles))
         common.maj_possibles(possibles, derniere_tentative, evaluation_p)
-        print("Après maj :", len(possibles))
     
     # On prend une solution au hasard parmi les possibles
     combinaison = random.choice(list(possibles))
+    derniere_tentative = combinaison
     
     return combinaison

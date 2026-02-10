@@ -39,12 +39,21 @@ if __name__ == '__main__':
     # import codemaker0
     # for i in range(5):
     #     play(codemaker0, codebreaker0)
+    
+    # Faire jouer ensemble codemaker0.py et codebreaker0.py
+    # import codebreaker0
+    # import codemaker0
+    # play(codemaker0, codebreaker0)
         
-    # Faire jouer codebreaker1.py et codemaker1.py
-    import codebreaker1
+    # Faire jouer ensemble codebreaker1.py et codemaker1.py
+    # import codebreaker1
+    # import codemaker1
+    # play(codemaker1, codebreaker1)
+    
+    # Faire jouer ensemble codebreaker2.py et codemaker1.py
+    import codebreaker2
     import codemaker1
-    for i in range(5):
-        play(codemaker1, codebreaker1)
+    play(codemaker1, codebreaker2)
 
     #  Faire jouer un humain contre codemaker0.py :
     #import codemaker0

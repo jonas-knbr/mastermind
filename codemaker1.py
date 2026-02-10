@@ -9,4 +9,6 @@ def init():
     solution = ''.join(random.choices(common.COLORS, k=common.LENGTH))
 
 def codemaker(combinaison):
+    global solution
+    print("Solution :", solution)
     return common.evaluation(solution, combinaison)

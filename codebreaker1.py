@@ -12,6 +12,7 @@ def init():
 
 
 def codebreaker(evaluation_p):
+    global tentatives
     # Combinaison au hasard
     combinaison = ''.join(random.choices(common.COLORS, k=common.LENGTH))
     

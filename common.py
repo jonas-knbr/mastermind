@@ -38,7 +38,8 @@ def donner_possibles(combinaison, evaluation_comb):
     # Retirer ceux qui n'ont pas la même évaluation
     for element in all_possibles:
         # Retire les éléments n'ayant pas la même évaluation
-        if evaluation(element, combinaison) != evaluation_comb:
+        evaluation_elem = evaluation(element, combinaison)
+        if evaluation_elem != evaluation_comb:
             possibles.remove(element)
                 
     return possibles
@@ -46,10 +47,14 @@ def donner_possibles(combinaison, evaluation_comb):
 def maj_possibles(possibles, combinaison, evaluation_comb):
     # Créer une copie pour itérer sur celle-ci
     old_possibles = possibles.copy()
+    print("old_possible :", old_possibles, "\ncombinaison :", combinaison)
     for element in old_possibles:
         # Retire les éléments n'ayant pas la même évaluation
-        if evaluation(element, combinaison) != evaluation_comb:
-            possibles.remove(element)        
+        evaluation_elem = evaluation(element, combinaison)
+        if evaluation_elem != evaluation_comb:
+            possibles.remove(element)
+    
+    print("possible :", possibles)
     
     return
     

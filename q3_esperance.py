@@ -12,7 +12,7 @@ parties = []
 for _ in range(nbr_parties):
     parties.append(play.play(codemaker1, codebreaker0, quiet=True))
 
-plt.title(f"Histogramme du nombre d'essais réalisés par le codebreaker\n({nbr_parties} parties)")
+plt.title(f"Histogramme du nombre d'essais réalisés par le codebreaker0\n({nbr_parties} parties)")
 plt.xlabel("Nombre d'essais")
 plt.ylabel("Nombre d'occurrences")
 plt.hist(parties)

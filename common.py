@@ -28,9 +28,28 @@ def donner_possibles(combinaison, evaluation_comb):
     nbr_possibles = len(COLORS)**LENGTH
     possibles = set()
     
+    # Crée toutes les combinaisons possibles
     while len(possibles) < nbr_possibles:
-        element = ''.join(random.choices(couleurs, k=LENGTH))
-        if evaluation(element) == evaluation_comb:
-            possibles.add(element)
+        element = ''.join(random.choices(COLORS, k=LENGTH))
+        possibles.add(element)
+    
+    # Créer une copie pour itérer sur celle-ci
+    all_possibles = possibles.copy()
+    # Retirer ceux qui n'ont pas la même évaluation
+    for element in all_possibles:
+        # Retire les éléments n'ayant pas la même évaluation
+        if evaluation(element, combinaison) != evaluation_comb:
+            possibles.remove(element)
                 
     return possibles
+
+def maj_possibles(possibles, combinaison, evaluation_comb):
+    # Créer une copie pour itérer sur celle-ci
+    old_possibles = possibles.copy()
+    for element in old_possibles:
+        # Retire les éléments n'ayant pas la même évaluation
+        if evaluation(element, combinaison) != evaluation_comb:
+            possibles.remove(element)        
+    
+    return
+    

@@ -10,9 +10,6 @@ def init():
     Pour vos codebreaker plus avancés, c'est ici que vous pouvez initialiser
     un certain nombre de variables à chaque début de partie.
     """
-    """
-    possibles = {''.join (random.choices(common.COLORS , k=common.LENGTH))}
-    """
     return
 
 
@@ -22,8 +19,5 @@ def codebreaker(evaluation_p):
     combinaison qu'on a proposée (et vaut None si c'est le premier coup de la
     partie). Cette version triviale n'utilise pas cette information, puisqu'
     elle joue au hasard.
-    """
-    """
-    possibles = common.donner_possibles(common.combinaison,common.evaluation)
     """
     return ''.join(random.choices(common.COLORS, k=common.LENGTH))

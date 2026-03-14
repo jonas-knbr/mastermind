@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import common
-
+import os
 
 def play(codemaker, codebreaker, quiet=False):
     """
@@ -29,6 +29,34 @@ def play(codemaker, codebreaker, quiet=False):
             if not quiet:
                 print("Bravo ! Trouvé {} en {} essais".format(combinaison, n_essais))
             return n_essais
+        
+def play_log(codemaker, codebreaker, filename):
+    n_essais = 0
+    codebreaker.init()
+    codemaker.init()
+    ev = None
+    # Création du fichier de log s'il n'existe pas encore
+    if not os.path.exists(filename):
+        open(filename, 'x')
+    # Ouverture du fichier en mode réécriture
+    log = open(filename, 'w')
+    first_line = True
+    while True:
+        combinaison = codebreaker.codebreaker(ev)
+        ev = codemaker.codemaker(combinaison)
+        # Écriture des logs, saut de ligne entre combinaison et évaluation
+        # Si première ligne, pas de saut de ligne au début
+        if first_line:
+            log.write(f"{combinaison}\n{ev}")
+            first_line = False
+        else:
+            log.write(f"\n{combinaison}\n{ev}")
+        n_essais += 1
+        if ev[0] >= common.LENGTH:
+            # Ajout d'un dernier saut de ligne et fermeture du fichier
+            log.write("\n")
+            log.close()
+            return n_essais    
 
 
 if __name__ == '__main__':
@@ -50,10 +78,11 @@ if __name__ == '__main__':
     # import codemaker1
     # play(codemaker1, codebreaker1)
     
-    # Faire jouer ensemble codebreaker2.py et codemaker1.py
+    # Faire jouer ensemble codebreaker2.py et codemaker2.py
+    # avec des logs dans log1.txt
     import codebreaker2
     import codemaker2
-    play(codemaker2, codebreaker2)
+    play_log(codemaker2, codebreaker2, "log1.txt")
 
     #  Faire jouer un humain contre codemaker0.py :
     #import codemaker0

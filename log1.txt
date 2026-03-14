@@ -1,0 +1,16 @@
+OGJJ
+(0, 1)
+GNGR
+(0, 1)
+MJNM
+(0, 1)
+JVRB
+(0, 1)
+NBBO
+(1, 1)
+ROMO
+(1, 0)
+BBMG
+(0, 0)
+NOVV
+(4, 0)

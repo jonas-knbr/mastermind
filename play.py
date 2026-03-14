@@ -52,8 +52,8 @@ if __name__ == '__main__':
     
     # Faire jouer ensemble codebreaker2.py et codemaker1.py
     import codebreaker2
-    import codemaker1
-    play(codemaker1, codebreaker2)
+    import codemaker2
+    play(codemaker2, codebreaker2)
 
     #  Faire jouer un humain contre codemaker0.py :
     #import codemaker0

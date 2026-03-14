@@ -33,14 +33,17 @@ def donner_possibles(combinaison, evaluation_comb):
         element = ''.join(random.choices(COLORS, k=LENGTH))
         possibles.add(element)
     
-    # Créer une copie pour itérer sur celle-ci
-    all_possibles = possibles.copy()
-    # Retirer ceux qui n'ont pas la même évaluation
-    for element in all_possibles:
-        # Retire les éléments n'ayant pas la même évaluation
-        evaluation_elem = evaluation(element, combinaison)
-        if evaluation_elem != evaluation_comb:
-            possibles.remove(element)
+    # Si une évaluation a été fournie, on retire les éléments impossibles
+    # au vu de cette évaluation
+    if evaluation_comb != None:
+        # Créer une copie pour itérer sur celle-ci
+        all_possibles = possibles.copy()
+        # Retirer ceux qui n'ont pas la même évaluation
+        for element in all_possibles:
+            # Retire les éléments n'ayant pas la même évaluation
+            evaluation_elem = evaluation(element, combinaison)
+            if evaluation_elem != evaluation_comb:
+                possibles.remove(element)
                 
     return possibles
 

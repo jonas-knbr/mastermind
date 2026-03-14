@@ -14,13 +14,14 @@ def init():
 
 def codebreaker(evaluation_p):
     global derniere_tentative, possibles
-    # Si aucune évaluation n'a été fournie (premier essai), on effectue juste un essai au hasard
+    # Si aucune évaluation n'a été fournie (premier essai), on effectue juste
+    # un essai au hasard
     if evaluation_p == None:
         combinaison = ''.join(random.choices(common.COLORS, k=common.LENGTH))
         derniere_tentative = combinaison
         return combinaison
     
-    # On est au deuxième essai, on doit creer l'ensemble des possibles
+    # On est au deuxième essai, on doit créer l'ensemble des possibles
     elif len(possibles) == 0:
         possibles = common.donner_possibles(derniere_tentative, evaluation_p)
    

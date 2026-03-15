@@ -47,10 +47,10 @@ def play_log(codemaker, codebreaker, filename):
         # Écriture des logs, saut de ligne entre combinaison et évaluation
         # Si première ligne, pas de saut de ligne au début
         if first_line:
-            log.write(f"{combinaison}\n{ev}")
+            log.write(f"{combinaison}\n{ev[0]},{ev[1]}")
             first_line = False
         else:
-            log.write(f"\n{combinaison}\n{ev}")
+            log.write(f"\n{combinaison}\n{ev[0]},{ev[1]}")
         n_essais += 1
         if ev[0] >= common.LENGTH:
             # Ajout d'un dernier saut de ligne et fermeture du fichier
